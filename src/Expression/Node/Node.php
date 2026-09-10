@@ -1,0 +1,14 @@
+<?php
+
+declare(strict_types=1);
+
+namespace GSteel\TemplateString\Expression\Node;
+
+interface Node
+{
+    public string $name { get; }
+    /** @var non-negative-int */
+    public int $pos { get; }
+    /** @var positive-int */
+    public int $line { get; }
+}
