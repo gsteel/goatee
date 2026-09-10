@@ -14,8 +14,7 @@
          failOnPhpunitWarning="true"
          failOnDeprecation="true"
          failOnRisky="true"
-         failOnWarning="true"
-         warnWhenPhpIsNotConfiguredForDevelopment="true">
+         failOnWarning="true">
     <testsuites>
         <testsuite name="default">
             <directory>test</directory>

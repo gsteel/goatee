@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "33df423be8ef963d163c44d19ad41f71",
+    "content-hash": "4cececb497a19a2bf0ad537390513af1",
     "packages": [
         {
             "name": "php-standard-library/foundation",
