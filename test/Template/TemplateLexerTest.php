@@ -21,42 +21,15 @@ final class TemplateLexerTest extends TestCase
     public static function basicDataProvider(): array
     {
         return [
-            [
-                'Some {{ text }} Here',
-                'S[5], E[6], S[5]',
-            ],
-            [
-                'Some {{text}} Here',
-                'S[5], E[4], S[5]',
-            ],
-            [
-                '{{ start }} Here',
-                'E[7], S[5]',
-            ],
-            [
-                'End {{ there }}',
-                'S[4], E[7]',
-            ],
-            [
-                "\nSome \n{{\n\ntext\n\n}}\n Here\n",
-                'S[7], E[8], S[7]',
-            ],
-            [
-                'Whatever…',
-                'S[11]',
-            ],
-            [
-                'Emoji 👍',
-                'S[10]',
-            ],
-            [
-                '👍{{👍}}',
-                'S[4], E[4]',
-            ],
-            [
-                'this }} is ok',
-                'S[13]',
-            ],
+            ['Some {{ text }} Here',               'S[5], E[6], S[5]'],
+            ['Some {{text}} Here',                 'S[5], E[4], S[5]'],
+            ['{{ start }} Here',                   'E[7], S[5]'],
+            ['End {{ there }}',                    'S[4], E[7]'],
+            ["\nSome \n{{\n\ntext\n\n}}\n Here\n", 'S[7], E[8], S[7]'],
+            ['Whatever…',                          'S[11]'],
+            ['Emoji 👍',                           'S[10]'],
+            ['👍{{👍}}',                           'S[4], E[4]'],
+            ['this }} is ok',                      'S[13]'],
         ];
     }
 

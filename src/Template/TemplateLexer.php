@@ -129,7 +129,7 @@ final class TemplateLexer
     private function scanUntil(ArrayIterator $byteStream, Closure $stopAt): string
     {
         $buffer = '';
-        while($byteStream->valid() && ! $stopAt($byteStream)) {
+        while ($byteStream->valid() && ! $stopAt($byteStream)) {
             $byte = $byteStream->current();
             $buffer .= $byte;
             $byteStream->next();

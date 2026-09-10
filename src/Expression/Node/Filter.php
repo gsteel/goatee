@@ -14,6 +14,5 @@ final readonly class Filter implements Node
         public string $name,
         public int $pos,
         public int $line,
-    ) {
-    }
+    ) {}
 }

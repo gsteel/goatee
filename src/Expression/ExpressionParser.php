@@ -22,7 +22,8 @@ final readonly class ExpressionParser
      * @return list<Variable>
      * @throws ParseError
      */
-    private function collectArguments(Token $fn, Generator $tokens): array {
+    private function collectArguments(Token $fn, Generator $tokens): array
+    {
         $args = [];
         $leftParen = $tokens->current();
         assert($leftParen !== null && $leftParen->type === TokenType::LParen, 'Indicates incorrect usage');

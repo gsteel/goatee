@@ -17,6 +17,5 @@ final readonly class Token
         public string $value,
         public int $pos,
         public int $line,
-    ) {
-    }
+    ) {}
 }

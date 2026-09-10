@@ -25,6 +25,14 @@ preserve-breaking-conditional-expression = true
 preserve-breaking-condition-expression = true
 preserve-redundant-logical-binary-expression-parentheses = true
 
+null-type-hint = "null_pipe_last"
+empty-line-after-control-structure = true
+empty-line-before-dangling-comments = false
+
+space-after-logical-not-unary-prefix-operator = true
+space-before-closure-parameter-list-parenthesis = true
+space-before-arrow-function-parameter-list-parenthesis = true
+
 [linter]
 integrations = ["psl", "phpunit"]
 
@@ -38,6 +46,7 @@ psl-regex-functions = { enabled = false }
 psl-array-functions = { enabled = false }
 psl-datetime = { enabled = false }
 sensitive-parameter = { enabled = false }
+yoda-conditions = { enabled = true, mode = "deny" }
 
 # Too many methods in test cases:
 too-many-methods = {

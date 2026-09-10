@@ -16,11 +16,15 @@ final class SyntaxError extends SourceError
      */
     public static function forUnterminatedExpression(string $expressionBody, int $line, int $column): self
     {
-        return new self(sprintf(
-            'Syntax error. Un-terminated expression on line %d and column %d. Saw "{{%s"',
+        return new self(
+            sprintf(
+                'Syntax error. Un-terminated expression on line %d and column %d. Saw "{{%s"',
+                $line,
+                $column,
+                $expressionBody,
+            ),
             $line,
             $column,
-            $expressionBody,
-        ), $line, $column);
+        );
     }
 }

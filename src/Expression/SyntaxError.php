@@ -16,11 +16,15 @@ final class SyntaxError extends SourceError
      */
     public static function invalidCharacter(string $byte, int $line, int $pos): self
     {
-        return new self(sprintf(
-            'Syntax error. Unexpected character "%s" on line %d and column %d',
-            $byte,
+        return new self(
+            sprintf(
+                'Syntax error. Unexpected character "%s" on line %d and column %d',
+                $byte,
+                $line,
+                $pos,
+            ),
             $line,
             $pos,
-        ), $line, $pos);
+        );
     }
 }

@@ -15,8 +15,7 @@ final readonly class Context
     /** @param object|array<array-key, mixed> $model */
     public function __construct(
         public object|array $model,
-    ) {
-    }
+    ) {}
 
     public function extract(string $name): mixed
     {

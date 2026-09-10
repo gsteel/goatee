@@ -20,8 +20,7 @@ final readonly class ExpressionLexer
     public function __construct(
         private int $startPos,
         private int $startLine,
-    ) {
-    }
+    ) {}
 
     private function isWhiteSpace(string $value): bool
     {

@@ -24,12 +24,12 @@ final class ExpressionParserTest extends TestCase
     public static function basicParseDataProvider(): array
     {
         return [
-            ['some.var', 'V: some.var'],
-            [' some.var  ', 'V: some.var'],
-            ["\nsome.var  \n", 'V: some.var'],
+            ['some.var',                 'V: some.var'],
+            [' some.var  ',              'V: some.var'],
+            ["\nsome.var  \n",           'V: some.var'],
             ['foo(arg1, arg2) | filter', 'C: foo(V: arg1, V: arg2), F: filter'],
-            ['foo()', 'C: foo()'],
-            ['var | filter1 | filter2', 'V: var, F: filter1, F: filter2'],
+            ['foo()',                    'C: foo()'],
+            ['var | filter1 | filter2',  'V: var, F: filter1, F: filter2'],
         ];
     }
 
@@ -41,16 +41,19 @@ final class ExpressionParserTest extends TestCase
         self::assertSame($expect, $this->nodeToString($node));
     }
 
-
     private function nodeToString(Node $node): string
     {
         return match ($node::class) {
             Expression::class => sprintf(
                 '%s',
-            implode(', ', map($node->nodes, $this->nodeToString(...))),
+                implode(', ', map($node->nodes, $this->nodeToString(...))),
             ),
             Filter::class => sprintf('F: %s', $node->name),
-            FnCall::class => sprintf('C: %s(%s)', $node->name, implode(', ', map($node->arguments, $this->nodeToString(...)))),
+            FnCall::class => sprintf(
+                'C: %s(%s)',
+                $node->name,
+                implode(', ', map($node->arguments, $this->nodeToString(...))),
+            ),
             Variable::class => sprintf('V: %s', $node->name),
             default => 'Not Supported',
         };

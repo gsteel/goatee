@@ -131,7 +131,7 @@ final class TemplateRendererTest extends TestCase
             [true],
             [false],
             [['arrays']],
-            [(object)['foo' => 'objects']],
+            [(object) ['foo' => 'objects']],
             [static fn (): string => 'callables'],
         ];
     }
@@ -192,8 +192,7 @@ final class TemplateRendererTest extends TestCase
 
     public function testStringableObjectsAreCastDuringRender(): void
     {
-        $object = new class implements Stringable
-        {
+        $object = new class implements Stringable {
             #[Override]
             public function __toString(): string
             {

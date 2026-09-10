@@ -16,6 +16,5 @@ final readonly class Expression implements Node
         public int $pos,
         public int $line,
         public array $nodes,
-    ) {
-    }
+    ) {}
 }

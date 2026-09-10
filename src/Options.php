@@ -10,6 +10,5 @@ final readonly class Options
         public bool $skipMissingFilters = false,
         public bool $skipMissingFunctions = false,
         public bool $strictVariables = false,
-    ) {
-    }
+    ) {}
 }

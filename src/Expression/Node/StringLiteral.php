@@ -14,6 +14,5 @@ final readonly class StringLiteral implements Node
         public string $name,
         public int $pos,
         public int $line,
-    ) {
-    }
+    ) {}
 }

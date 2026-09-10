@@ -16,31 +16,11 @@ final class ContextTest extends TestCase
     public static function extractProvider(): array
     {
         return [
-            [
-                'a.b.c',
-                '{"a":{"b":{"c":"fred"}}}',
-                'fred',
-            ],
-            [
-                'a.z',
-                '{"a":{"b":{"c":"fred"}, "z": 1}}',
-                1,
-            ],
-            [
-                'a.z',
-                '{}',
-                null,
-            ],
-            [
-                'foo',
-                '{"a":{"b":{"c":"fred"}}}',
-                null,
-            ],
-            [
-                'c',
-                '{"a":{"b":{"c":"fred"}}}',
-                null,
-            ],
+            ['a.b.c', '{"a":{"b":{"c":"fred"}}}',         'fred'],
+            ['a.z',   '{"a":{"b":{"c":"fred"}, "z": 1}}', 1],
+            ['a.z',   '{}',                               null],
+            ['foo',   '{"a":{"b":{"c":"fred"}}}',         null],
+            ['c',     '{"a":{"b":{"c":"fred"}}}',         null],
         ];
     }
 
