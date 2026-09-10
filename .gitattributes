@@ -3,6 +3,7 @@
 composer.lock export-ignore
 mago.toml export-ignore
 renovate.json export-ignore
+phpunit.xml.dist export-ignore
 
 /test/ export-ignore
 /.github/ export-ignore

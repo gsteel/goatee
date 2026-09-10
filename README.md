@@ -163,7 +163,7 @@ A function such as `fn (): DateTimeImmutable => new DateTimeImmutable()` will yi
 
 #### Invokable Classes
 
-Both filters and functions can happily be invokable classes, so you can register them with the respective 'manager' by pulling them from your DI container if they have service dependencies you need. 
+Both filters and functions can happily be invokable classes, so you can register them with the respective 'manager' by pulling them from your DI container if they have service dependencies you need.
 
 ### Models/Data
 
