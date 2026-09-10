@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest;
+namespace GSteel\GoateeTest;
 
-use GSteel\TemplateString\FilterManager;
-use GSteel\TemplateString\FilterNotFound;
+use GSteel\Goatee\FilterManager;
+use GSteel\Goatee\FilterNotFound;
 use PHPUnit\Framework\TestCase;
 
 final class FilterManagerTest extends TestCase

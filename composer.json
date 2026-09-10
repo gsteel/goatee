@@ -1,10 +1,10 @@
 {
-    "name": "gsteel/template-string",
+    "name": "gsteel/goatee",
     "description": "A small library for parsing and rendering nested models into string literals using a familiar mustache/handlebars format without additional features",
     "type": "library",
     "license": "MIT",
     "keywords": ["template", "mustache", "handlebars", "php"],
-    "homepage": "https://github.com/gsteel/template-string",
+    "homepage": "https://github.com/gsteel/goatee",
     "authors": [
         {
             "name": "George Steel",
@@ -24,7 +24,7 @@
     },
     "autoload": {
         "psr-4": {
-            "GSteel\\TemplateString\\": "src/"
+            "GSteel\\Goatee\\": "src/"
         }
     },
     "require-dev": {
@@ -33,7 +33,7 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "GSteel\\TemplateStringTest\\": "test/"
+            "GSteel\\GoateeTest\\": "test/"
         }
     }
 }

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest\Expression;
+namespace GSteel\GoateeTest\Expression;
 
-use GSteel\TemplateString\Expression\ExpressionLexer;
-use GSteel\TemplateString\Expression\SyntaxError;
-use GSteel\TemplateString\Expression\Token;
+use GSteel\Goatee\Expression\ExpressionLexer;
+use GSteel\Goatee\Expression\SyntaxError;
+use GSteel\Goatee\Expression\Token;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

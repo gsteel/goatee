@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString;
+namespace GSteel\Goatee;
 
 final readonly class Options
 {

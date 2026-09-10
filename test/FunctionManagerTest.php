@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest;
+namespace GSteel\GoateeTest;
 
-use GSteel\TemplateString\FunctionManager;
-use GSteel\TemplateString\FunctionNotFound;
+use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\FunctionNotFound;
 use PHPUnit\Framework\TestCase;
 
 final class FunctionManagerTest extends TestCase

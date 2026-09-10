@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest;
+namespace GSteel\GoateeTest;
 
-use GSteel\TemplateString\Context;
+use GSteel\Goatee\Context;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

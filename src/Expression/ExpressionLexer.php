@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Expression;
+namespace GSteel\Goatee\Expression;
 
 use ArrayIterator;
 use Generator;
