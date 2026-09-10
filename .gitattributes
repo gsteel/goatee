@@ -2,3 +2,7 @@
 .gitignore export-ignore
 composer.lock export-ignore
 mago.toml export-ignore
+renovate.json export-ignore
+
+/test/ export-ignore
+/.github/ export-ignore

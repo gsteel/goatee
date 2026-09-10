@@ -1,14 +1,23 @@
 {
     "name": "gsteel/template-string",
     "description": "A small library for parsing and rendering nested models into string literals using a familiar mustache/handlebars format without additional features",
-    "minimum-stability": "stable",
+    "type": "library",
     "license": "MIT",
+    "keywords": ["template", "mustache", "handlebars", "php"],
+    "homepage": "https://github.com/gsteel/template-string",
     "authors": [
         {
             "name": "George Steel",
-            "email": "email@example.com"
+            "email": "george@netglue.uk"
         }
     ],
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {},
+        "platform": {
+            "php": "8.4.99"
+        }
+    },
     "require": {
         "php": "^8.4 || ^8.5",
         "ext-mbstring": "*",
