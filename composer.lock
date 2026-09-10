@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "085a0545bc529364b6f0c7625e818a74",
+    "content-hash": "43b7fd78a3f3fb81fe80a8468f74d56f",
     "packages": [
         {
             "name": "php-standard-library/foundation",
@@ -2204,5 +2204,8 @@
         "ext-mbstring": "*"
     },
     "platform-dev": {},
+    "platform-overrides": {
+        "php": "8.4.99"
+    },
     "plugin-api-version": "2.9.0"
 }
