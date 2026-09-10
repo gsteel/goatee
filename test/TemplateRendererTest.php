@@ -2,16 +2,16 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest;
+namespace GSteel\GoateeTest;
 
 use DateTimeImmutable;
 use Exception;
-use GSteel\TemplateString\Context;
-use GSteel\TemplateString\FilterManager;
-use GSteel\TemplateString\FunctionManager;
-use GSteel\TemplateString\RenderingFailed;
-use GSteel\TemplateString\SourceError;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\Context;
+use GSteel\Goatee\FilterManager;
+use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\RenderingFailed;
+use GSteel\Goatee\SourceError;
+use GSteel\Goatee\TemplateRenderer;
 use Override;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;

@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Expression;
+namespace GSteel\Goatee\Expression;
 
 use Generator;
-use GSteel\TemplateString\Expression\Node\Expression;
-use GSteel\TemplateString\Expression\Node\Filter;
-use GSteel\TemplateString\Expression\Node\FnCall;
-use GSteel\TemplateString\Expression\Node\Node;
-use GSteel\TemplateString\Expression\Node\Variable;
+use GSteel\Goatee\Expression\Node\Expression;
+use GSteel\Goatee\Expression\Node\Filter;
+use GSteel\Goatee\Expression\Node\FnCall;
+use GSteel\Goatee\Expression\Node\Node;
+use GSteel\Goatee\Expression\Node\Variable;
 
 use function assert;
 use function iterator_to_array;

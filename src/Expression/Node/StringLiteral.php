@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Expression\Node;
+namespace GSteel\Goatee\Expression\Node;
 
 final readonly class StringLiteral implements Node
 {

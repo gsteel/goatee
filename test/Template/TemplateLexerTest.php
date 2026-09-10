@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest\Template;
+namespace GSteel\GoateeTest\Template;
 
-use GSteel\TemplateString\Template\SyntaxError;
-use GSteel\TemplateString\Template\TemplateLexer;
-use GSteel\TemplateString\Template\Token;
-use GSteel\TemplateString\Template\TokenType;
+use GSteel\Goatee\Template\SyntaxError;
+use GSteel\Goatee\Template\TemplateLexer;
+use GSteel\Goatee\Template\Token;
+use GSteel\Goatee\Template\TokenType;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

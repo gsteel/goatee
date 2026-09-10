@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Expression\Node;
+namespace GSteel\Goatee\Expression\Node;
 
-use GSteel\TemplateString\Expression\ParseError;
+use GSteel\Goatee\Expression\ParseError;
 
 use function explode;
 use function preg_match;

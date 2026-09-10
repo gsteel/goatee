@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Template;
+namespace GSteel\Goatee\Template;
 
 use ArrayIterator;
 use Closure;

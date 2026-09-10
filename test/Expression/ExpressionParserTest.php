@@ -2,15 +2,15 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateStringTest\Expression;
+namespace GSteel\GoateeTest\Expression;
 
-use GSteel\TemplateString\Expression\ExpressionParser;
-use GSteel\TemplateString\Expression\Node\Expression;
-use GSteel\TemplateString\Expression\Node\Filter;
-use GSteel\TemplateString\Expression\Node\FnCall;
-use GSteel\TemplateString\Expression\Node\Node;
-use GSteel\TemplateString\Expression\Node\Variable;
-use GSteel\TemplateString\Expression\ParseError;
+use GSteel\Goatee\Expression\ExpressionParser;
+use GSteel\Goatee\Expression\Node\Expression;
+use GSteel\Goatee\Expression\Node\Filter;
+use GSteel\Goatee\Expression\Node\FnCall;
+use GSteel\Goatee\Expression\Node\Node;
+use GSteel\Goatee\Expression\Node\Variable;
+use GSteel\Goatee\Expression\ParseError;
 use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 

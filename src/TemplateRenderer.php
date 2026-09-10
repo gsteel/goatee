@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString;
+namespace GSteel\Goatee;
 
-use GSteel\TemplateString\Expression\ExpressionParser;
-use GSteel\TemplateString\Expression\Node\Expression;
-use GSteel\TemplateString\Expression\Node\Filter;
-use GSteel\TemplateString\Expression\Node\FnCall;
-use GSteel\TemplateString\Expression\Node\Node;
-use GSteel\TemplateString\Expression\Node\StringLiteral;
-use GSteel\TemplateString\Expression\Node\Variable;
-use GSteel\TemplateString\Template\TemplateLexer;
-use GSteel\TemplateString\Template\TokenType;
+use GSteel\Goatee\Expression\ExpressionParser;
+use GSteel\Goatee\Expression\Node\Expression;
+use GSteel\Goatee\Expression\Node\Filter;
+use GSteel\Goatee\Expression\Node\FnCall;
+use GSteel\Goatee\Expression\Node\Node;
+use GSteel\Goatee\Expression\Node\StringLiteral;
+use GSteel\Goatee\Expression\Node\Variable;
+use GSteel\Goatee\Template\TemplateLexer;
+use GSteel\Goatee\Template\TokenType;
 use Stringable;
 use Throwable;
 

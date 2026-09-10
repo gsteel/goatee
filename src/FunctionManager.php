@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString;
+namespace GSteel\Goatee;
 
 use function array_key_exists;
 

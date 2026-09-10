@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace GSteel\TemplateString\Template;
+namespace GSteel\Goatee\Template;
 
-use GSteel\TemplateString\SourceError;
+use GSteel\Goatee\SourceError;
 
 use function sprintf;
 

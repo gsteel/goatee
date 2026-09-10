@@ -1,11 +1,15 @@
-# Simplified Mustache/Handlebars-Like Template Renderer
+# Goatee
+
+> Like a mustache, but not really. 🐐
+
+## Simplified Mustache/Handlebars-Like Template Renderer
 
 This is a small template rendering library with a subset of the features that most Handlebars implementations provide.
 
 ## Install
 
 ```bash
-composer require gsteel/template-string
+composer require gsteel/goatee
 ```
 
 ## Features
@@ -22,9 +26,9 @@ composer require gsteel/template-string
 ### Simple String Interpolation
 
 ```php
-use GSteel\TemplateString\FilterManager;
-use GSteel\TemplateString\FunctionManager;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\FilterManager;
+use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\TemplateRenderer;
 
 $renderer = new TemplateRenderer(
     new FilterManager(),
@@ -61,10 +65,10 @@ EOF;
 ### Using Filters to Process Variables
 
 ```php
-use GSteel\TemplateString\Context;
-use GSteel\TemplateString\FilterManager;
-use GSteel\TemplateString\FunctionManager;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\Context;
+use GSteel\Goatee\FilterManager;
+use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\TemplateRenderer;
 
 $renderer = new TemplateRenderer(
     new FilterManager([
@@ -104,10 +108,10 @@ assert($result === 'Hi there Jane, your birthdate is 2020-01-01');
 ### Interpolating Arbitrary Function Output
 
 ```php
-use GSteel\TemplateString\Context;
-use GSteel\TemplateString\FilterManager;
-use GSteel\TemplateString\FunctionManager;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\Context;
+use GSteel\Goatee\FilterManager;
+use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\TemplateRenderer;
 
 $renderer = new TemplateRenderer(
     new FilterManager(),
@@ -145,7 +149,7 @@ Filters are chainable and are processed left-to-right. They receive exactly 2 ar
 You do not have to use the context, but your callable will be provided it regardless.
 
 ```php
-use GSteel\TemplateString\Context;
+use GSteel\Goatee\Context;
 
 $filter = function (mixed $input, Context $context): mixed { /** Closure Body */ }
 ```
@@ -174,7 +178,7 @@ For object arguments, only public **properties** are read. No methods are called
 Models are wrapped in a small class `Context` which has a single method: `extract(string): mixed`. Values are retrieved using dot notation, so an object such as:
 
 ```php
-use GSteel\TemplateString\Context;
+use GSteel\Goatee\Context;
 
 $model = new readonly class {
     public string $foo = 'bar',
@@ -194,8 +198,8 @@ $context->extract('foo.baz.bing'); // 'bong'
 The template renderer wraps all possible exceptions with `RenderingFailed`, so in general use:
 
 ```php
-use GSteel\TemplateString\RenderingFailed;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\RenderingFailed;
+use GSteel\Goatee\TemplateRenderer;
 
 assert($renderer instanceof TemplateRenderer);
 
@@ -209,8 +213,8 @@ try {
 If you want to check templates for basic soundness, you can parse the template and extract information from the exception:
 
 ```php
-use GSteel\TemplateString\SourceError;
-use GSteel\TemplateString\TemplateRenderer;
+use GSteel\Goatee\SourceError;
+use GSteel\Goatee\TemplateRenderer;
 
 assert($renderer instanceof TemplateRenderer);
 
