@@ -159,5 +159,5 @@ infection: install ## Run mutation tests
 clean: remove-mdlint-config clear-phpunit-cache uninstall remove-php-image  ## Clean up caches and documentation artifacts
 .PHONY: clean
 
-qa: analyse lint fmtcheck test docs-lint composer-validate ## Run all QA targets
+qa: analyse lint fmtcheck test docs-lint composer-validate infection ## Run all QA targets
 .PHONY: qa
