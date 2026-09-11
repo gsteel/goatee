@@ -34,6 +34,7 @@ space-before-closure-parameter-list-parenthesis = true
 space-before-arrow-function-parameter-list-parenthesis = true
 
 [linter]
+minimum-fail-level = "note"
 integrations = ["psl", "phpunit"]
 
 [linter.rules]
@@ -59,6 +60,7 @@ assertion-style = {
 }
 
 [analyzer]
+minimum-fail-level = "note"
 plugins = ["psl"]
 find-unused-definitions = true
 find-unused-expressions = true

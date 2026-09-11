@@ -19,7 +19,7 @@ composer require gsteel/goatee
 - Arbitrary Filters
 
 > [!WARNING]
-> This library does **NOT** automatically escape any output. Its purpose is for small, focussed tasks that require more advanced interpolation and features in a small, easy to use/read/understand template format than hand-rolling some kind of string replacement thing. Think email message subject lines, SMS or What's app templates…
+> This library does **NOT** automatically escape any output. Its purpose is for small, focussed tasks that require more advanced interpolation and features in a small, easy to use/read/understand template format than hand-rolling some kind of string replacement thing. Think email message subject lines, SMS or What's app templates… If you need this lib to escape output, consider using [`laminas/laminas-escaper`](https://github.com/laminas/laminas-escaper) and exposing it as a filter.
 
 ## Basic Usage
 
@@ -228,6 +228,29 @@ try {
 ```
 
 The parser(s) are not tolerant, so you'll only get 1 error at a time.
+
+### Additional Options
+
+The template renderer accepts an additional `Options` object to its constructor enabling you to toggle some behaviour:
+
+- `skipMissingFilters` _(default `false`)_
+- `skipMissingFunctions` _(default `false`)_
+- `strictVariables` _(default `false`)_
+
+Skipping a missing function will normally yield `''`, and otherwise an exception is thrown, i.e. `{{ notThere() }}`, by default is exceptional.
+
+Skipping filters is potentially more useful, for example, the template `{{ some.var | notThere | upper }}` may still at least uppercase the variable. Default behaviour is that an exception is thrown when a filter cannot be resolved.
+
+"Strict variables" is disabled by default, meaning any undefined variable silently becomes `null`, therefore `{{ notThere }}`, `{{ func(notThere) }}`, `{{ notThere | upper }}` all yield `''`.
+Enabling strict variables will instead cause an exception to be thrown any time an undefined variable is encountered.
+
+Note that a variable explicitly set to null will not be considered 'undefined', so
+
+```php
+$renderer->render('{{ name }}', ['name' => null]);
+```
+
+will not cause an exception.
 
 ## Contributions
 
