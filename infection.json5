@@ -1,0 +1,13 @@
+{
+    "$schema": "vendor/infection/infection/resources/schema.json",
+    "source": {
+        "directories": [
+            "src"
+        ]
+    },
+    "staticAnalysisTool":"mago",
+    "mutators": {
+        "@default": true
+    },
+    "minMsi": 92.0
+}
