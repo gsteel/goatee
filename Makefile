@@ -88,7 +88,7 @@ test: install ## Run PHPUnit tests
 .PHONY: test
 
 clear-phpunit-cache: ## Clear the PHPUnit Cache
-	$(eval PHPUNIT_CACHE_DIR := $(shell xpath -q -e 'string(//phpunit/@cacheDirectory)' ${PHPUNIT_CONFIG}))
+	$(eval PHPUNIT_CACHE_DIR := $(shell xpath -q -e 'string(//phpunit/@cacheDirectory)' phpunit.xml.dist))
 ifneq ($(wildcard ${PHPUNIT_CACHE_DIR}), "")
 	@$(call MK_INFO, "Clearing PHPUnit Cache")
 	@rm -rf ${PHPUNIT_CACHE_DIR}
