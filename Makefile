@@ -152,8 +152,12 @@ fmt: install ## Fix CS with Mago
 	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/mago fmt
 .PHONY: fmt
 
+infection: install ## Run mutation tests
+	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/infection
+.PHONY: infection
+
 clean: remove-mdlint-config clear-phpunit-cache uninstall remove-php-image  ## Clean up caches and documentation artifacts
 .PHONY: clean
 
-qa: analyse lint fmtcheck test docs-lint composer-validate ## Run all QA targets
+qa: analyse lint fmtcheck test docs-lint composer-validate infection ## Run all QA targets
 .PHONY: qa
