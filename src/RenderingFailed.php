@@ -49,4 +49,13 @@ final class RenderingFailed extends RuntimeException
             $error,
         );
     }
+
+    public static function becauseOfAMissingVariable(VariableNotFound $error): self
+    {
+        return new self(
+            $error->getMessage(),
+            0,
+            $error,
+        );
+    }
 }

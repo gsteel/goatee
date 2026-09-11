@@ -9,6 +9,7 @@ use Exception;
 use GSteel\Goatee\Context;
 use GSteel\Goatee\FilterManager;
 use GSteel\Goatee\FunctionManager;
+use GSteel\Goatee\Options;
 use GSteel\Goatee\RenderingFailed;
 use GSteel\Goatee\SourceError;
 use GSteel\Goatee\TemplateRenderer;
@@ -19,6 +20,7 @@ use Stringable;
 
 use function mb_chr;
 use function strrev;
+use function strtoupper;
 
 final class TemplateRendererTest extends TestCase
 {
@@ -270,5 +272,94 @@ final class TemplateRendererTest extends TestCase
     {
         $this->expectException(SourceError::class);
         $this->renderer->parseTemplate($template);
+    }
+
+    public function testMissingVariablesAreUpcastToRenderingFailedException(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            false,
+            false,
+            true,
+        ));
+
+        $this->expectException(RenderingFailed::class);
+        $this->expectExceptionMessageIsOrContains('A variable with the name "varName"');
+        $renderer->render('{{ varName }}', []);
+    }
+
+    public function testMissingVariablesInFunctionCallsAreUpcastToRenderingFailedException(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            false,
+            false,
+            true,
+        ));
+
+        $this->functions->registerFunction('foo', static fn (): string => 'Fred');
+
+        $this->expectException(RenderingFailed::class);
+        $this->expectExceptionMessageIsOrContains('A variable with the name "varName"');
+        $renderer->render('{{ foo(varName) }}', []);
+    }
+
+    public function testMissingVariablesInFiltersAreUpcastToRenderingFailedException(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            false,
+            false,
+            true,
+        ));
+
+        $this->filters->registerFilter(
+            'foo',
+            static fn (mixed $_buffer, Context $context): mixed => $context->extract('not.there'),
+        );
+
+        $this->expectException(RenderingFailed::class);
+        $this->expectExceptionMessageIsOrContains('The variable "not.there" could not be found at position "not"');
+        $renderer->render('{{ varName | foo }}', ['varName' => 'Anything']);
+    }
+
+    public function testSkippingUnknownFunctions(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            false,
+            true,
+            false,
+        ));
+
+        self::assertSame('', $renderer->render('{{ something() }}'));
+    }
+
+    public function testSkippingUnknownFilters(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            true,
+            false,
+            false,
+        ));
+
+        $this->filters->registerFilter('upper', static function (mixed $input, Context $_context): mixed {
+            if (is_string($input)) {
+                return strtoupper($input);
+            }
+
+            return $input;
+        });
+
+        self::assertSame('FRED', $renderer->render('{{ name | nope | upper }}', ['name' => 'Fred']));
+        self::assertSame('FRED', $renderer->render('{{ name | upper | nope }}', ['name' => 'Fred']));
+        self::assertSame('Fred', $renderer->render('{{ name | nope }}', ['name' => 'Fred']));
+    }
+
+    public function testExplicitNullVariableIsNotConsideredUndefined(): void
+    {
+        $renderer = new TemplateRenderer($this->filters, $this->functions, new Options(
+            false,
+            false,
+            true,
+        ));
+
+        self::assertSame('', $renderer->render('{{ name }}', ['name' => null]));
     }
 }

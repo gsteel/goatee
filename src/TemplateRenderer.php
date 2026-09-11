@@ -21,7 +21,7 @@ use function is_scalar;
 use function Psl\Vec\map;
 
 /**
- * @mago-expect lint:halstead,cyclomatic-complexity,kan-defect (Improvements could be made here!)
+ * @mago-expect lint:cyclomatic-complexity,kan-defect (Improvements could be made here!)
  */
 final readonly class TemplateRenderer
 {
@@ -41,7 +41,7 @@ final readonly class TemplateRenderer
      */
     public function render(string $template, array|object $model = []): string
     {
-        $context = new Context($model);
+        $context = new Context($model, $this->options->strictVariables);
         $buffer = '';
 
         try {
@@ -95,35 +95,12 @@ final readonly class TemplateRenderer
         $buffer = '';
 
         foreach ($expression->nodes as $node) {
-            if ($node instanceof Variable) {
-                $buffer = $context->extract($node->name);
-            }
-
-            if ($node instanceof FnCall) {
-                try {
-                    $output = $this->callFunction($node, $context);
-                    $buffer = $output;
-                } catch (FunctionNotFound $error) {
-                    if (! $this->options->skipMissingFunctions) {
-                        throw RenderingFailed::becauseAFunctionCouldNotBeFound($error);
-                    }
-                } catch (Throwable $error) {
-                    throw RenderingFailed::becauseOfAnUnknownError($error);
-                }
-            }
-
-            if ($node instanceof Filter) {
-                try {
-                    $filtered = $this->callFilter($node, $buffer, $context);
-                    $buffer = $filtered;
-                } catch (FilterNotFound $error) {
-                    if (! $this->options->skipMissingFilters) {
-                        throw RenderingFailed::becauseAFilterCouldNotBeFound($error);
-                    }
-                } catch (Throwable $error) {
-                    throw RenderingFailed::becauseOfAnUnknownError($error);
-                }
-            }
+            $buffer = match ($node::class) {
+                Variable::class => $this->handleVariableNode($node, $context),
+                FnCall::class => $this->handleFunctionCall($buffer, $node, $context),
+                Filter::class => $this->handleFilter($buffer, $node, $context),
+                default => $buffer,
+            };
         }
 
         if (is_bool($buffer) || $buffer === null) {
@@ -137,11 +114,61 @@ final readonly class TemplateRenderer
         return '';
     }
 
-    /** @throws FunctionNotFound */
+    /** @throws RenderingFailed */
+    private function handleVariableNode(Variable $node, Context $context): mixed
+    {
+        try {
+            return $context->extract($node->name);
+        } catch (VariableNotFound $error) {
+            throw RenderingFailed::becauseOfAMissingVariable($error);
+        }
+    }
+
+    /** @throws RenderingFailed */
+    private function handleFunctionCall(mixed $buffer, FnCall $node, Context $context): mixed
+    {
+        try {
+            return $this->callFunction($node, $context);
+        } catch (FunctionNotFound $error) {
+            if ($this->options->skipMissingFunctions) {
+                return $buffer;
+            }
+
+            throw RenderingFailed::becauseAFunctionCouldNotBeFound($error);
+        } catch (VariableNotFound $error) {
+            throw RenderingFailed::becauseOfAMissingVariable($error);
+        } catch (Throwable $error) {
+            throw RenderingFailed::becauseOfAnUnknownError($error);
+        }
+    }
+
+    /** @throws RenderingFailed */
+    private function handleFilter(mixed $buffer, Filter $node, Context $context): mixed
+    {
+        try {
+            return $this->callFilter($node, $buffer, $context);
+        } catch (FilterNotFound $error) {
+            if ($this->options->skipMissingFilters) {
+                return $buffer;
+            }
+
+            throw RenderingFailed::becauseAFilterCouldNotBeFound($error);
+        } catch (VariableNotFound $error) {
+            throw RenderingFailed::becauseOfAMissingVariable($error);
+        } catch (Throwable $error) {
+            throw RenderingFailed::becauseOfAnUnknownError($error);
+        }
+    }
+
+    /**
+     * @throws FunctionNotFound
+     * @throws VariableNotFound
+     */
     private function callFunction(FnCall $node, Context $context): mixed
     {
         $args = map(
             $node->arguments,
+            /** @throws VariableNotFound */
             static fn (Variable $variable): mixed => $context->extract($variable->name),
         );
 
@@ -150,7 +177,10 @@ final readonly class TemplateRenderer
         return $function(...$args);
     }
 
-    /** @throws FilterNotFound */
+    /**
+     * @throws FilterNotFound
+     * @throws VariableNotFound
+     */
     private function callFilter(Filter $node, mixed $buffer, Context $context): mixed
     {
         $filter = $this->filters->get($node->name);
