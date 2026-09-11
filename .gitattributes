@@ -7,6 +7,7 @@ phpunit.xml.dist export-ignore
 Dockerfile export-ignore
 Makefile export-ignore
 .laminas-ci.json export-ignore
+infection.json5 export-ignore
 
 /test/ export-ignore
 /.github/ export-ignore
