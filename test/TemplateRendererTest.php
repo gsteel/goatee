@@ -152,6 +152,7 @@ final class TemplateRendererTest extends TestCase
     {
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('Template rendering failed because the template was not valid');
+        $this->expectExceptionCode(0);
 
         $this->renderer->render('{{ Oh Bad!');
     }
@@ -160,6 +161,7 @@ final class TemplateRendererTest extends TestCase
     {
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('A function could not be found by the name "nope"');
+        $this->expectExceptionCode(0);
 
         $this->renderer->render('{{ nope() }}');
     }
@@ -168,6 +170,7 @@ final class TemplateRendererTest extends TestCase
     {
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('A filter could not be found by the name "Fred"');
+        $this->expectExceptionCode(0);
 
         $this->renderer->render('{{ foo.bar | Fred }}');
     }
@@ -178,6 +181,7 @@ final class TemplateRendererTest extends TestCase
 
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('An exception occurred during rendering: Nope!');
+        $this->expectExceptionCode(0);
 
         $this->renderer->render('{{ bad() }}');
     }
@@ -188,6 +192,7 @@ final class TemplateRendererTest extends TestCase
 
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('An exception occurred during rendering: Nope!');
+        $this->expectExceptionCode(0);
 
         $this->renderer->render('{{ foo.bar | bad }}');
     }
@@ -271,6 +276,7 @@ final class TemplateRendererTest extends TestCase
     public function testParsingATemplateWillYieldSourceErrorsForInvalidTemplates(string $template): void
     {
         $this->expectException(SourceError::class);
+        $this->expectExceptionCode(0);
         $this->renderer->parseTemplate($template);
     }
 
@@ -284,6 +290,7 @@ final class TemplateRendererTest extends TestCase
 
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('A variable with the name "varName"');
+        $this->expectExceptionCode(0);
         $renderer->render('{{ varName }}', []);
     }
 
@@ -299,6 +306,7 @@ final class TemplateRendererTest extends TestCase
 
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('A variable with the name "varName"');
+        $this->expectExceptionCode(0);
         $renderer->render('{{ foo(varName) }}', []);
     }
 
@@ -317,6 +325,7 @@ final class TemplateRendererTest extends TestCase
 
         $this->expectException(RenderingFailed::class);
         $this->expectExceptionMessageIsOrContains('The variable "not.there" could not be found at position "not"');
+        $this->expectExceptionCode(0);
         $renderer->render('{{ varName | foo }}', ['varName' => 'Anything']);
     }
 

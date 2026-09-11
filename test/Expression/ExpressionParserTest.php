@@ -107,6 +107,10 @@ final class ExpressionParserTest extends TestCase
                 'foo.bar()',
                 '"foo.bar" is not a valid function name on line 1 and column 0',
             ],
+            'Invalid Function Name 2' => [
+                'Foo.Bar()',
+                '"Foo.Bar" is not a valid function name on line 1 and column 0',
+            ],
             'Function after variable' => [
                 'foo foo()',
                 'Variables can only be function args, stand alone or be followed by a filter',
