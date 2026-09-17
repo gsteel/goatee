@@ -8,11 +8,11 @@ use GSteel\Goatee\Expression\ExpressionParser;
 use GSteel\Goatee\Expression\Node\Expression;
 use GSteel\Goatee\Expression\Node\Filter;
 use GSteel\Goatee\Expression\Node\FnCall;
-use GSteel\Goatee\Expression\Node\Node;
 use GSteel\Goatee\Expression\Node\StringLiteral;
 use GSteel\Goatee\Expression\Node\Variable;
 use GSteel\Goatee\Template\TemplateLexer;
 use GSteel\Goatee\Template\TokenType;
+use Override;
 use Stringable;
 use Throwable;
 
@@ -23,7 +23,7 @@ use function Psl\Vec\map;
 /**
  * @mago-expect lint:cyclomatic-complexity,kan-defect (Improvements could be made here!)
  */
-final readonly class TemplateRenderer
+final readonly class TemplateRenderer implements Renderer, TemplateParser
 {
     private Options $options;
 
@@ -35,10 +35,8 @@ final readonly class TemplateRenderer
         $this->options = $options ?? new Options();
     }
 
-    /**
-     * @param array<array-key, mixed>|object $model
-     * @throws RenderingFailed
-     */
+    /** @inheritDoc */
+    #[Override]
     public function render(string $template, array|object $model = []): string
     {
         $context = new Context($model, $this->options->strictVariables);
@@ -60,10 +58,8 @@ final readonly class TemplateRenderer
         return $buffer;
     }
 
-    /**
-     * @return list<Node>
-     * @throws SourceError
-     */
+    /** @inheritDoc */
+    #[Override]
     public function parseTemplate(string $template): array
     {
         $templateLexer = new TemplateLexer();
