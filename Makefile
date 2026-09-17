@@ -152,6 +152,11 @@ fmt: install ## Fix CS with Mago
 	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/mago fmt
 .PHONY: fmt
 
+cs-fix: install ## FiX CS and Formatting Issues
+	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/mago lint --fix
+	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/mago fmt
+.PHONY: cs-fix
+
 infection: install ## Run mutation tests
 	@$(DOCKER_RUN) ${DOCKER_IMAGE_ID} vendor/bin/infection
 .PHONY: infection
