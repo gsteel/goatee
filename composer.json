@@ -31,9 +31,9 @@
         }
     },
     "require-dev": {
-        "carthage-software/mago": "^1.58.2",
+        "carthage-software/mago": "^1.59.0",
         "infection/infection": "^0.35.8",
-        "phpunit/phpunit": "^13.4.3"
+        "phpunit/phpunit": "^13.4.5"
     },
     "autoload-dev": {
         "psr-4": {
